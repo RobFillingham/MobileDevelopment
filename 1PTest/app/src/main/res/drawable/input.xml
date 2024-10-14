@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Estilos para los inputs, color de fondo y radio -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#ffffff" /> <!-- Background color -->
+    <corners android:radius="4dp" />  <!-- Rounded corners -->
+    <stroke android:width="2dp" android:color="#808080" /> <!-- Border color -->
+</shape>

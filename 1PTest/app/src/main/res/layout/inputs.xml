@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="50dp"
+    android:id="@+id/main"
+    >
+
+    <!-- Titulo Calculadora ISR -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calculadora ISR"
+        android:textSize="50dp"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="sans-serif-condensed-medium"
+    />
+
+    <!-- Tip de Periodo-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Periodo:"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:textSize="20dp"
+        android:fontFamily="sans-serif-condensed-medium"
+    />
+    <!-- Se selecciona el periodo del spinner -->
+    <!-- Usé un drawable para los estilos de los inputs -->
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/spinner_background"
+        android:padding="12dp"
+        android:layout_marginBottom="40dp"
+        android:id="@+id/spin"
+    />
+    <!-- Tip de Ingreso -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingreso:"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="20dp"
+        android:fontFamily="sans-serif-condensed-medium"
+    />
+    <!-- Input para el ingreso -->
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textSize="20dp"
+        android:padding="12dp"
+        android:textAlignment="center"
+        android:background="@drawable/spinner_background"
+        android:id="@+id/income"
+    />
+
+    <!-- Boton para calcular -->
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:text="Continuar"
+        android:layout_marginTop="382dp"
+        android:background="@color/navy"
+        android:textSize="30dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:id="@+id/button"
+
+    />
+
+
+</LinearLayout>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Estilos para los textView, color de fondo y radio -->
+
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/navy" /> <!-- Background color -->
+    <corners android:radius="7dp" />  <!-- Rounded corners -->
+    <stroke android:width="0dp" android:color="@color/navy" /> <!-- Border color -->
+</shape>

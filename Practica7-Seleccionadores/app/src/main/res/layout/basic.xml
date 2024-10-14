@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main">
+    <CheckBox
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/checkBox"
+        android:layout_weight="1"
+        android:text="@string/seleccioname"
+        android:checked="false" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rGroup"
+        android:layout_weight="1">
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rbtnOpc1"
+            android:text="@string/opcion1"
+            />
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rbtnOpc2"
+            android:text="@string/opcion2"
+            />
+    </RadioGroup>
+</LinearLayout>

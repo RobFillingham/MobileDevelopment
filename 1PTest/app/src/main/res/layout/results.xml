@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="30dp"
+    android:id="@+id/main">
+
+    <!-- Titulo Calculadora ISR -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Calculadora ISR"
+        android:textSize="30dp"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="sans-serif-condensed-medium"
+    />
+    <!-- Subtitulo Total a pagar: -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total a pagar:"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:layout_marginTop="10dp"
+
+    />
+    <!-- Cifra Total a pagar -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="$100,000.00 MXN"
+        android:textSize="45dp"
+        android:padding="15dp"
+        android:paddingLeft="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:background="@drawable/resultgreen"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:id="@+id/total"
+    />
+    <!-- Este layout contendrá cada paso de los cálculos -->
+    <!-- Para cada paso se uso un drawable para definir los estilos -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+    >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ingreso: $100,000.00 MXN"
+            android:textSize="20dp"
+            android:padding="15dp"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:background="@drawable/result"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:id="@+id/first"
+        />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Límite Inferior: $100,000.00 MXN"
+            android:textSize="20dp"
+            android:padding="15dp"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:background="@drawable/result"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:id="@+id/second"
+        />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Diferencia: $100,000.00 MXN"
+            android:textSize="20dp"
+            android:padding="15dp"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:background="@drawable/result"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:id="@+id/third"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tasa: $100,000.00 MXN"
+            android:textSize="20dp"
+            android:padding="15dp"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:background="@drawable/result"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:id="@+id/fourth"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$100,000.00 MXN"
+            android:textSize="20dp"
+            android:padding="15dp"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:background="@drawable/result"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:id="@+id/fifth"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$100,000.00 MXN"
+            android:textSize="20dp"
+            android:padding="15dp"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:background="@drawable/result"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:id="@+id/sixth"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$100,000.00 MXN"
+            android:textSize="20dp"
+            android:padding="15dp"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:background="@drawable/result"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:id="@+id/seventh"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$100,000.00 MXN"
+            android:textSize="20dp"
+            android:padding="15dp"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:background="@drawable/result"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:id="@+id/eighth"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$100,000.00 MXN"
+            android:textSize="20dp"
+            android:padding="15dp"
+            android:paddingLeft="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:background="@drawable/result"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_weight="1"
+            android:id="@+id/ninth"
+            />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
