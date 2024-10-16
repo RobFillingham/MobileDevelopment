@@ -16,4 +16,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.example.actividad14_controlespersonalizados14.SelectColor
+        android:layout_width="245dp"
+        android:layout_height="478dp"
+        tools:ignore="MissingConstraints"
+        android:id="@+id/selectorColor"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,7 @@
 package com.example.actividad14_controlespersonalizados14;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,9 +21,22 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
+
+        SelectColor sc = findViewById(R.id.selectorColor);
+
+        sc.setOnColorListener(new OnSelectedColorListener() {
+            @Override
+            public void onSelectedColor(int color){
+                Toast.makeText( MainActivity.this, "Color: " + color, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
 
 
 }
+
+
