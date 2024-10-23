@@ -26,7 +26,7 @@ public class Galaxy extends AppCompatButton {
     private LinearGradient gradient;
     private int width;
     private int height;
-    private float progress = 0.8F;
+    private float progress = 1F;
 
     public Galaxy(@NonNull Context context) {
         super(context);
@@ -65,7 +65,12 @@ public class Galaxy extends AppCompatButton {
     }
 
     public void setProgress(float progress) {
-        this.progress = progress;
+        if(progress > 1F)
+            progress = 1F;
+        else if(progress < 0F)
+            progress = 0F;
+        else
+            this.progress = progress;
         invalidate();
     }
     public float getProgress() {
@@ -87,7 +92,7 @@ public class Galaxy extends AppCompatButton {
         //Black and purple
         gradient = new LinearGradient(0, 0, width*3, height*3,
                 Color.parseColor("#121212"), //black
-                Color.parseColor("#0000ff"),
+                Color.parseColor("#ffffff"),
                 Shader.TileMode.CLAMP);
         pFondo.setShader(gradient);
         RectF rect = new RectF(0, 0, width, height);
@@ -95,33 +100,36 @@ public class Galaxy extends AppCompatButton {
 
         //Progress bar total
         pProgBarTotal.setColor(Color.GRAY);
-        RectF rect3 = new RectF(50, getHeight()-125, width-180, height-50);
+        RectF rect3 = new RectF(getWidth()/20, getHeight()*76/100, width*83/100, height-50);
         canvas.drawRoundRect(rect3, 40f, 40f, pProgBarTotal);
 
         //Progress bar
         pProgBar.setColor(Color.YELLOW);
-        RectF rect2 = new RectF(50, getHeight()-125, (width-180)*progress, height-50);
+        RectF rect2 = new RectF(getWidth()/20, getHeight()*76/100, (width*83/100)*progress, height-50);
         canvas.drawRoundRect(rect2, 40f, 40f, pProgBar);
 
 
 
 
-        // Galaxia
+
+
         float textWidth = pTexto.measureText(getText().toString());
-        float textX = 50; // Center the text horizontally
-        float textY = (getHeight() + pTexto.getTextSize()) / 2 - 150; // Center the text vertically
+        float textX = getWidth()/20; // Center the text horizontally
+        float textY = getHeight()*30/100; // Center the text vertically
         canvas.drawText(getText().toString(), textX, textY, pTexto);
 
         //descripcion
+
+
         float textWidth2 = pDesc.measureText("Pasado, presente y futuro en una cafetería");
-        float textX2 = 50; // Center the text horizontally
-        float textY2 = (getHeight() + pDesc.getTextSize()) / 2 - 40; // Center the text vertically
+        float textX2 = getWidth()/20; // Center the text horizontally
+        float textY2 = getHeight()*48/100; // Center the text vertically
         canvas.drawText("Pasado, presente y futuro en una cafetería", textX2, textY2, pDesc);
 
         //progreso
         String progressText = (int) (progress * 100) + "%";
         float textWidth3 = pProg.measureText(progressText);
-        float textX3 = width-135; //  horizontally
+        float textX3 = width*87/100; //  horizontally
         float textY3 = height-65; //  vertically
         canvas.drawText(progressText, textX3, textY3, pProg);
 
