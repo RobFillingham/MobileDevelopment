@@ -6,7 +6,10 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.DashPathEffect;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.Shader;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,6 +32,12 @@ public class CLienzo extends View {
     int selectedShape = 0;
     private boolean isDragging = false;
     Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.auburn);
+    LinearGradient gradient = new LinearGradient(
+            0, 0, 1000, 1000, // Horizontal gradient (left to right)
+            new int[] {Color.RED, Color.BLUE}, // Colors: Red -> Green -> Blue
+            new float[] {0.5f, 1.0f}, // Positions: start, middle, end
+            Shader.TileMode.CLAMP);
+
 
 
     Path path=new Path();
@@ -58,12 +67,15 @@ public class CLienzo extends View {
         paint.setColor(drawColor);
         paint.setAntiAlias(true);
         paint.setDither(true);
-        paint.setStyle(Paint.Style.STROKE);
+        paint.setStyle(Paint.Style.FILL);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeWidth(STROKE_WIDTH);
+        paint.setShader(gradient);
 
         // Dashed paint for preview
+        dashedPaint.setShadowLayer(10f, 5f, 5f, Color.BLACK);
+
         dashedPaint.setColor(drawColor);
         dashedPaint.setStyle(Paint.Style.STROKE);
         dashedPaint.setStrokeWidth(STROKE_WIDTH);
@@ -83,6 +95,7 @@ public class CLienzo extends View {
     @Override
     protected void onDraw(@NonNull Canvas canvas) {
         super.onDraw(canvas);
+
         canvas.drawBitmap(extraBitmap, 0, 0, null);
         canvas.drawRect(0,0,150,50,paintBtn);
         canvas.drawText("Borrar",10,35,paintText);
@@ -177,7 +190,9 @@ public class CLienzo extends View {
                 extraCanvas.drawRect(currentX, currentY, endindX, endingY, paint);
                 break;
             case 4:
+                paint.setShadowLayer(10f, 5f, 5f, Color.BLACK);
                 extraCanvas.drawArc(currentX, currentY, endindX, endingY, 0, 360, true, paint);
+                paint.clearShadowLayer();
                 break;
             case 5:
                 extraCanvas.drawBitmap(bitmap, currentX, currentY, null);
@@ -189,14 +204,23 @@ public class CLienzo extends View {
                 extraCanvas.drawRect(currentX, currentY, endindX, endingY, paint);
                 break;
             case 8:
-                extraCanvas.drawText("Hola", endindX, endingY, paint);
+
+                paintText.setTypeface(Typeface.create("Arial", Typeface.BOLD));
+                paintText.setTextSkewX(-0.25f);
+                paintText.setTextSize(Math.abs(endingY-currentY));
+                extraCanvas.drawText("Hola", currentX, endingY, paintText);
+                paintText.setTextSize(40f);
+
                 break;
             default:
                 extraCanvas.drawPoint(endindX, endingY, paint);
                 break;
 
+
         }
+
         invalidate();
+        //selectedShape = 0;
     }
 
     public void setSelectedShape(int shape){
