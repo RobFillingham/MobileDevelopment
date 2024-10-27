@@ -6,6 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 
 
 public class CLienzo extends View {
@@ -17,8 +19,10 @@ public class CLienzo extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        imagen = getResources().getDrawable(R.drawable.android);
-        imagen.setBounds(30, 30, 500, 500);
+        setBackgroundResource(R.drawable.degradado);
+
+        imagen = AppCompatResources.getDrawable(getContext(), R.drawable.baseline_favorite_24);
+        imagen.setBounds(w/10, h/10, 1000, 1000);
     }
 
     @Override
