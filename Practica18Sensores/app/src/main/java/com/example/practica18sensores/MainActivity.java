@@ -26,18 +26,45 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private List<Sensor> listSensors;
     private TextView textView1;
 
+
+    private TextView xTextView;
+    private TextView yTextView;
+    private TextView zTextView;
+    private Sensor accelerometer, gyroscope;
+    private Board board;
+    private double Ax, Ay, Az, Gx, Gy, Gz;
+    private boolean both=false;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.drawing_board);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+        xTextView = findViewById(R.id.textView1);
+        xTextView.setText("X:");
+        yTextView = findViewById(R.id.textView2);
+        yTextView.setText("Y:");
+        zTextView = findViewById(R.id.textView3);
+        zTextView.setText("Z:");
+        board = findViewById(R.id.board);
+
+
+
+
+
+
+
         try{
+
+            /*
             linearLayout = findViewById(R.id.linearLayout);
             sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
             listSensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
@@ -58,33 +85,98 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                     textViews[n][i].setText("?");
                     textViews[n][i].setWidth(300);
                 }
-            }
-        }catch(Exception e){
 
+                TextView xTextView = new TextView(this);
+                xTextView.setText("   X:");
+                inLinearLayout.addView(xTextView);
+                inLinearLayout.addView(textViews[n][0]);
+
+                TextView yTextView = new TextView(this);
+                yTextView.setText("   Y:");
+                inLinearLayout.addView(yTextView);
+                inLinearLayout.addView(textViews[n][1]);
+
+                TextView zTextView = new TextView(this);
+                zTextView.setText("   Z:");
+                inLinearLayout.addView(zTextView);
+                inLinearLayout.addView(textViews[n][2]);
+
+                sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_UI);
+
+                n++;
+
+                */
+
+            sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+
+            if (sensorManager != null) {
+                accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+                gyroscope = sensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+                sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_UI);
+                sensorManager.registerListener(this, gyroscope, SensorManager.SENSOR_DELAY_UI);
             }
+
+
+
+        }catch(Exception e){
+            Toast.makeText(getApplicationContext(), "Error: " + e.toString(), Toast.LENGTH_LONG).show();
         }
+
+
+
+    }
+
+
+
+
+
+
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        try{
             synchronized(this){
-                int n = 0;
+                /*int n = 0;
                 for (Sensor sensor : listSensors){
                     if(event.sensor == sensor) {
-                        for (int i = 0; i < event.values.length; i++) {
-                            textViews[n][i].setText(Math.round(event.values[i]*100d)/100d + "");
+                        try{
+                            for (int i = 0; i < event.values.length; i++) {
+                                textViews[n][i].setText(Math.round(event.values[i]*100d)/100d + "");
+                            }
+                        }catch(Exception e){
+                            //Toast.makeText(getApplicationContext(), "Error: " + e.toString(), Toast.LENGTH_LONG).show();
                         }
                     }
                     n++;
+                    if(n>= listSensors.size())
+                        break;
+
+                }*/
+
+                if(event.sensor == accelerometer ){
+                    Ax = Math.round(event.values[0]*100d)/100d;
+                    Ay = Math.round(event.values[1]*100d)/100d;
+                    Az = Math.round(event.values[2]*100d)/100d;
+
+                }else if(event.sensor == gyroscope){
+                    Gx = Math.round(event.values[0]*100d)/100d;
+                    Gy = Math.round(event.values[1]*100d)/100d;
+                    Gz = Math.round(event.values[2]*100d)/100d;
                 }
+                board.sensorMovement(Ax, Ay, Az, Gx, Gy, Gz);
+                xTextView.setText("X: " + Ax);
+                yTextView.setText("Y: " + Ay);
+                zTextView.setText("Z: " + Az);
+
+
             }
-        }catch(Exception e){
-            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-        }
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
+
+
+
+
 
     }
 }
