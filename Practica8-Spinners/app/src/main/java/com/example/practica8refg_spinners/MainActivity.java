@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         adaptadorDatos2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cmbOpciones2.setAdapter(adaptadorDatos2);
-
+        cmbOpciones2.setOnItemSelectedListener(evento2);
         cmbOpciones2.setSelection(2);
 
         imagen = findViewById(R.id.imagen);

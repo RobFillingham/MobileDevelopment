@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     String[] phoneNumbers = new String[100];
     String[] emails = new String[100];
     String[][] secPersonalities = new String[20][3];
+
+    DBSQLite db;
 
 
     ArrayList<Contacto> datos = new ArrayList<>();
@@ -58,10 +61,13 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
+        db = new DBSQLite(this);
+
         fillNames();
         fillNumbers();
         fillEmails();
         fillSEC();
+
 
 
             Random random = new Random();
@@ -476,7 +482,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void fillSEC(){
-        secPersonalities[0] = new String[]{"Nick Saban", "University of Alabama", "Head Football Coach"};
+        /*secPersonalities[0] = new String[]{"Nick Saban", "University of Alabama", "Head Football Coach"};
         secPersonalities[1] = new String[]{"Kirby Smart", "University of Georgia", "Head Football Coach"};
         secPersonalities[2] = new String[]{"John Calipari", "University of Kentucky", "Head Basketball Coach"};
         secPersonalities[3] = new String[]{"Jimbo Fisher", "Texas A&M University", "Head Football Coach"};
@@ -496,5 +502,23 @@ public class MainActivity extends AppCompatActivity {
         secPersonalities[17] = new String[]{"Nate Oats", "University of Alabama", "Head Basketball Coach"};
         secPersonalities[18] = new String[]{"Rick Barnes", "University of Tennessee", "Head Basketball Coach"};
         secPersonalities[19] = new String[]{"Bryan Harsin", "Auburn University", "Head Football Coach"};
+
+
+
+        for(int i = 0; i < 20; i++){
+            db.guardaDatos(secPersonalities[i][0], secPersonalities[i][1], secPersonalities[i][2]);
+        }
+
+         */
+
+        Vector<String> result = db.listaDatos();
+        int j = 0;
+        for(int i=0; i<20; i++){
+            secPersonalities[i][0] = result.get(j);
+            secPersonalities[i][2] = result.get(j+1);
+            secPersonalities[i][1] = result.get(j+2);
+            j+=3;
+        }
+
     }
 }

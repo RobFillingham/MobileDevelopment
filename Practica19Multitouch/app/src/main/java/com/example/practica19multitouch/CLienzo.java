@@ -20,20 +20,29 @@ public class CLienzo extends View {
             Color.DKGRAY, Color.GRAY, Color.LTGRAY, Color.BLACK
     };
     private Paint textPaint = new Paint();
+    private Thread hilo;
 
-    int time = 0;
+    boolean play = false;
+
+    int time = 10;
+
     public CLienzo(Context context) {
         super(context);
         myPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         myPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         textPaint.setAntiAlias(true);
         textPaint.setTextSize(30);
-        Thread hilo = new Thread(){
+        hilo = new Thread(){
             public synchronized void run(){
                 while(true){
                     try{
                         Thread.sleep(1000);
-                        time++;
+                        if(play)
+                            time--;
+                        if(time == 0){
+                            chooseOne();
+                            time=10;
+                        }
                         invalidate();
                     }catch(InterruptedException e){
                         e.printStackTrace();
@@ -42,23 +51,50 @@ public class CLienzo extends View {
             }
         };
         hilo.start();
+
+
+    }
+
+    private void chooseOne(){
+        int size = punterosActivos.size();
+        if (size > 0) {
+            int random = (int)(Math.random() * size);
+            int winningKey = punterosActivos.keyAt(random);
+            PointF winningPoint = punterosActivos.get(winningKey);
+
+            punterosActivos.clear();
+            if (winningPoint != null) {
+                punterosActivos.put(winningKey, winningPoint);
+            }
+            play = false;
+            invalidate();
+        }
+
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int indice = event.getActionIndex();
         int apuntadorId = event.getPointerId(indice);
+
+        if(event.getActionMasked() == MotionEvent.ACTION_DOWN){
+            play = true;
+        }
+
         if(event.getActionMasked() == MotionEvent.ACTION_DOWN || event.getActionMasked() == MotionEvent.ACTION_POINTER_DOWN) {
             PointF f = new PointF();
             f.x = event.getX(indice);
             f.y = event.getY(indice);
             punterosActivos.put(apuntadorId, f);
+
+
         }
         if(event.getActionMasked() == MotionEvent.ACTION_MOVE){
             int size = event.getPointerCount();
             int i=0;
             while(i<size){
-                PointF puntero = punterosActivos.valueAt(event.getPointerId(i));
+                int pointerId = event.getPointerId(i);
+                PointF puntero = punterosActivos.get(pointerId);
                 if(puntero != null){
                     puntero.x = event.getX(i);
                     puntero.y = event.getY(i);
@@ -72,7 +108,6 @@ public class CLienzo extends View {
         }
         invalidate();
         return true;
-
     }
 
     @Override
@@ -81,16 +116,20 @@ public class CLienzo extends View {
         int size = punterosActivos.size();
         int i = 0;
         PointF puntero = new PointF();
-        while (i < size) {
+        while (i < size){
             puntero = punterosActivos.valueAt(i);
             if (puntero != null) {
-                myPaint.setColor(colors[i%9]);
+                myPaint.setColor(colors[i% colors.length]);
             }
             canvas.drawCircle(puntero.x, puntero.y, SIZE, myPaint);
             i++;
         }
         canvas.drawText("Tiempo: " + time, 10f, 80f, textPaint);
         canvas.drawText("Punteros: " + punterosActivos.size(), 10f, 120f, textPaint);
-        super.onDraw(canvas);
+
+
     }
+
+
+
 }

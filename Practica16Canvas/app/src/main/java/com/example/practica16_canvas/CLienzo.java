@@ -46,6 +46,8 @@ public class CLienzo extends View {
     Paint paintText = new Paint();
     private Paint dashedPaint = new Paint();
 
+    private float motionTouchEventX, motionTouchEventY;
+
 
     public CLienzo(Context context){
         super(context);
@@ -123,8 +125,9 @@ public class CLienzo extends View {
         reset();
     }
 
-    private float motionTouchEventX=0f;
-    private float motionTouchEventY=0f;
+
+
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
